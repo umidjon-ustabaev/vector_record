@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Rails-native vector embeddings and RAG integration for Active Record."
   spec.description = "Bring the power of AI to your Rails app without the boilerplate. ActiveVector seamlessly synchronizes your Active Record models with vector databases (like pgvector), providing an idiomatic, convention-driven API for generating LLM embeddings and powering Retrieval-Augmented Generation (RAG)."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage = "https://github.com/umidjon-ustabaev/active_vector"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
 
