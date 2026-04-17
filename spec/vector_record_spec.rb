@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe ActiveVector do
+RSpec.describe VectorRecord do
   it "has a version number" do
-    expect(ActiveVector::VERSION).not_to be nil
+    expect(VectorRecord::VERSION).not_to be nil
   end
 
   it "does something useful" do

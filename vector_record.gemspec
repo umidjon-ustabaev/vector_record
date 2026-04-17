@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-require_relative "lib/active_vector/version"
+require_relative "lib/vector_record/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "active_vector"
-  spec.version = ActiveVector::VERSION
+  spec.name = "vector_record"
+  spec.version = VectorRecord::VERSION
   spec.authors = ["Umidjon Ustabaev"]
   spec.email = ["umidjonustabaev@gmail.com"]
 
   spec.summary = "Rails-native vector embeddings and RAG integration for Active Record."
-  spec.description = "Bring the power of AI to your Rails app without the boilerplate. ActiveVector seamlessly synchronizes your Active Record models with vector databases (like pgvector), providing an idiomatic, convention-driven API for generating LLM embeddings and powering Retrieval-Augmented Generation (RAG)."
-  spec.homepage = "https://github.com/umidjon-ustabaev/active_vector"
+  spec.description = "Bring the power of AI to your Rails app without the boilerplate. VectorRecord seamlessly synchronizes your Active Record models with vector databases (like pgvector), providing an idiomatic, convention-driven API for generating LLM embeddings and powering Retrieval-Augmented Generation (RAG)."
+  spec.homepage = "https://github.com/umidjon-ustabaev/vector_record"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
+  spec.metadata["source_code_uri"] = "https://github.com/umidjon-ustabaev/vector_record"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
