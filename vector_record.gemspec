@@ -5,8 +5,8 @@ require_relative "lib/vector_record/version"
 Gem::Specification.new do |spec|
   spec.name = "vector_record"
   spec.version = VectorRecord::VERSION
-  spec.authors = ["Umidjon Ustabaev"]
-  spec.email = ["umidjonustabaev@gmail.com"]
+  spec.authors = [ "Umidjon Ustabaev" ]
+  spec.email = [ "umidjonustabaev@gmail.com" ]
 
   spec.summary = "Rails-native vector embeddings and RAG integration for Active Record."
   spec.description = "Bring the power of AI to your Rails app without the boilerplate. VectorRecord seamlessly synchronizes your Active Record models with vector databases (like pgvector), providing an idiomatic, convention-driven API for generating LLM embeddings and powering Retrieval-Augmented Generation (RAG)."
@@ -29,13 +29,12 @@ Gem::Specification.new do |spec|
   end
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = [ "lib" ]
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
-  spec.add_dependency "activerecord", ">= 7.0"
-  spec.add_dependency "activesupport", ">= 7.0"
   spec.add_dependency "openai", "~> 0.62.0"
+  spec.add_development_dependency "rubocop-rails-omakase"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
