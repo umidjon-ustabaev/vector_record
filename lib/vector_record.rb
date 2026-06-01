@@ -64,11 +64,15 @@ module VectorRecord
     # @abstract Implement to provide PII detection.
     class PiiDetector; end
 
+    # Represents a single loaded document with its content and provenance.
+    Document = Struct.new(:id, :page_content, :source, :metadata, :embeddings, keyword_init: true)
+
     # @param name [Symbol]
     # @pram mod [Module]
     def self.register_plugin(name, mod)
       PLUGINS[name] = mod
     end
+
 
     # @param mod [Module, Symbol]]
     # @param args [Array]
@@ -135,14 +139,20 @@ module VectorRecord
     def initialize(source, logger: nil)
       @source = source
       @logger = logger || VectorRecord.configuration.logger
-      @loader = Loader.new
+      @loader = Loader.new(source, logger)
       @chunker = Chunker.new
       @embeddings = Embeddings.new
       @vector_store = VectorStore.new
       @pii_detector = PiiDetector.new
     end
 
-    attr_reader :source, :logger, :loader, :chunker, :embeddings, :vector_store, :pii_detector
+    attr_reader :source,
+                :logger,
+                :loader,
+                :chunker,
+                :embeddings,
+                :vector_store,
+                :pii_detector
 
     # Executes the pipeline stages in order.
     #
