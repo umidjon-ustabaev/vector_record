@@ -83,23 +83,9 @@ module VectorRecord
     # Configuration for the embedding provider.
     #
     # @example
-    #   config.embeddings.provider  = "openai"
     #   config.embeddings.api_token = "sk-..."
-    class Embeddings < BaseConfig
-      DEFAULT_EMBEDDINGS_PROVIDER = :open_ai
-      DEFAULT_EMBEDDINGS_MODEL = "text-embedding-ada-002"
-
-      private_constant :DEFAULT_EMBEDDINGS_PROVIDER
-      private_constant :DEFAULT_EMBEDDINGS_MODEL
-      def initialize
-        super(
-          {
-            provider: DEFAULT_EMBEDDINGS_PROVIDER,
-            model: DEFAULT_EMBEDDINGS_MODEL
-          }
-        )
-      end
-    end
+    #   config.embeddings.model  = "text-embedding-ada-002"
+    class Embeddings < BaseConfig; end
 
     # Configuration for the vector store backend.
     #

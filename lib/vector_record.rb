@@ -7,6 +7,8 @@ require_relative "vector_record/configuration"
 module VectorRecord
   # Base error class for all VectorRecord exceptions.
   class Error < StandardError; end
+  # Represents a single loaded document with its content and provenance.
+  Document = Struct.new(:id, :page_content, :source, :metadata, :embeddings, keyword_init: true)
 
   class << self
     # Returns the global {Configuration} instance, creating it on first call.
@@ -63,9 +65,6 @@ module VectorRecord
 
     # @abstract Implement to provide PII detection.
     class PiiDetector; end
-
-    # Represents a single loaded document with its content and provenance.
-    Document = Struct.new(:id, :page_content, :source, :metadata, :embeddings, keyword_init: true)
 
     # @param name [Symbol]
     # @pram mod [Module]

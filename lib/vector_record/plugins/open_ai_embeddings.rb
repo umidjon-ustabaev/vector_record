@@ -3,16 +3,10 @@
 require "openai"
 
 module VectorRecord
-  module Embeddings
-    # Generates embeddings via the OpenAI Embeddings API.
-    #
-    # @example
-    #   embedder = VectorRecord::Embeddings::OpenAIEmbeddings.new(api_key: "sk-...")
-    #   embedder.embed_text("Hello world")          # => [0.123, -0.456, ...]
-    #   embedder.embed_documents([doc1, doc2])       # => [doc1, doc2] with #embeddings populated
+  module Plugins
     module OpenAIEmbeddings
-      VectorRecord::Embeddings.register_provider(:open_ai, self)
-      module ProviderMethods
+      VectorRecord::Pipeline.register_plugin(:open_ai_embeddings, self)
+      module EmbeddingsMethods
         # @return [String] OpenAI API key
         attr_reader :api_key
 
@@ -22,10 +16,8 @@ module VectorRecord
         # @param config [VectorRecord::Configuration::Embeddings]]
         def initialize(config = VectorRecord.configuration.embeddings)
           api_key = config.api_key || ENV["OPENAI_API_KEY"]
-
-          if api_key.nil?
-            raise ArgumentError, "OpenAI API key is required"
-          end
+          raise ArgumentError, "OpenAI API key is required, set through env OPENAI_API_KEY or config" if api_key.nil?
+          raise ArgumentError, "OpenAI model name is required" if config.model.nil?
 
           @api_key = api_key
           @model = config.model
@@ -43,13 +35,11 @@ module VectorRecord
         # @param documents [Array<Pipeline::Document>] documents whose +page_content+ will be embedded
         # @return [Array<Pipeline::Document>] the same documents with +embeddings+ populated
         def embed_documents(documents)
-          response = client.embeddings.create(
-            input: documents.map(&:page_content),
-            model: model
-          )
+          response = client.embeddings.create(input: documents.map(&:page_content), model: model)
+          embeddings = response.data
 
-          response.data.each_with_index do |embedding, index|
-            documents[index].embeddings = embedding.embedding
+          documents.each_with_index do |doc, index|
+            doc.embeddings = embeddings[index].embedding
           end
 
           documents

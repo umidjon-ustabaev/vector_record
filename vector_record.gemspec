@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
   spec.add_dependency "openai", "~> 0.62.0"
+  spec.add_dependency "faraday", "~> 2.0"
   spec.add_development_dependency "rubocop-rails-omakase"
 
   # For more information and examples about making a new gem, check out our
